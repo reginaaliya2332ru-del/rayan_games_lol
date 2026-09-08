@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Раян + Регина 💍</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,sans-serif;color:#4b1730;background:linear-gradient(135deg,#ffd6e7,#ffb6cf,#ffc9dc);overflow:hidden}
+.screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:24px;text-align:center}.screen.active{display:flex}
+.card{width:min(92vw,520px);padding:32px 24px;border-radius:30px;background:#ffffffc9;backdrop-filter:blur(10px);box-shadow:0 15px 50px #6414322e;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:scale(.92) translateY(12px)}to{opacity:1;transform:none}}
+.title{font-size:clamp(28px,7vw,42px);font-weight:900;margin:12px 0 20px}.text{font-size:18px;line-height:1.5;margin:15px 0}.big{font-size:58px}.names{font-size:25px;font-weight:800;margin:20px 0}
+button{border:0;border-radius:18px;padding:15px 23px;margin:8px;font-size:17px;font-weight:700;background:#fff;color:#6d193c;box-shadow:0 7px 18px #50143226;cursor:pointer;-webkit-tap-highlight-color:transparent}.main-btn{background:#d92d68;color:#fff}.danger{background:#ffedf3}
+.progress-box{height:20px;background:#f5d5e1;border-radius:20px;overflow:hidden;margin:25px 0}.progress{height:100%;width:0;background:#d92d68}
+.stamp{display:inline-block;margin:20px;padding:15px 22px;border:4px solid #d92d68;border-radius:12px;color:#d92d68;font-weight:900;transform:rotate(-5deg)}
+.small{font-size:13px;opacity:.65;margin-top:20px}.heart{position:fixed;pointer-events:none;animation:fall linear forwards;z-index:5}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+#errorModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:#3c0a1e59;backdrop-filter:blur(5px);z-index:100}.error-card{width:min(90vw,430px);background:#fff;border-radius:25px;padding:30px 22px;text-align:center;box-shadow:0 20px 60px #0004}
+</style>
+</head>
+<body>
+
+<section class="screen active" id="s1"><div class="card"><div class="big">⚠️</div><div class="title">ВНИМАНИЕ</div><div class="text">Система обнаружила<br><b>подозрительно холостого Раяна 🐥</b></div><p class="text">Требуется срочное исправление ситуации.</p><button class="main-btn" id="start">ИСПРАВИТЬ СИТУАЦИЮ</button></div></section>
+
+<section class="screen" id="s2"><div class="card"><div class="big">🔎</div><div class="title">ДИАГНОСТИКА</div><div class="text">Проверяем объект...</div><div class="names">Раян 🐥</div><div class="text">Статус: <b>холост</b> ❌</div><button class="main-btn next" data-to="3">ПРОДОЛЖИТЬ</button></div></section>
+
+<section class="screen" id="s3"><div class="card"><div class="big">👀</div><div class="title">ОБНАРУЖЕНА РЕГИНА</div><div class="text">Система обнаружила человека, который <b>подозрительно хорошо подходит Раяну.</b></div><div class="names">Раян 🐥 + Регина 💗</div><button class="main-btn next" data-to="4">ПРОВЕРИТЬ СОВМЕСТИМОСТЬ</button></div></section>
+
+<section class="screen" id="s4"><div class="card"><div class="big">📊</div><div class="title">АНАЛИЗ СОВМЕСТИМОСТИ</div><div class="names">Раян + Регина</div><div class="progress-box"><div class="progress" id="progress"></div></div><div class="text" id="progressText">Подготавливаем результаты...</div></div></section>
+
+<section class="screen" id="s5"><div class="card"><div class="big">💗</div><div class="title">РЕЗУЛЬТАТ</div><div class="text">Совместимость: <b>ОЧЕНЬ ПОДОЗРИТЕЛЬНАЯ</b> 😌</div><p class="text">✓ Вместе весело<br>✓ Уже привыкли друг к другу<br>✓ Регина явно заинтересована<br>✓ Раян подозрительно не возражает</p><button class="main-btn next" data-to="6">ЧТО ДЕЛАТЬ? 👀</button></div></section>
+
+<section class="screen" id="s6"><div class="card"><div class="big">📄</div><div class="title">ЗАЯВЛЕНИЕ</div><div class="names">Раян 🐥<br>+<br>Регина 💗</div><div class="text">Заявление автоматически подготовлено.</div><div class="stamp">ОПАСНО БЛИЗКО<br>К ОФОРМЛЕНИЮ</div><br><button class="main-btn next" data-to="7">ЧИТАЕМ УСЛОВИЯ</button></div></section>
+
+<section class="screen" id="s7"><div class="card"><div class="big">📜</div><div class="title">УСЛОВИЯ</div><div class="text">1. Любить друг друга 💗</div><div class="text">2. Терпеть странности друг друга 🗿</div><div class="text">3. Делить вкусняшки 🍕</div><div class="text">4. Не сбегать при первой же ссоре 😂</div><button class="main-btn next" data-to="8">Я ОЗНАКОМЛЕН(А) 👀</button></div></section>
+
+<section class="screen" id="s8"><div class="card"><div class="big">💍</div><div class="title">ПОСЛЕДНИЙ ВОПРОС</div><div class="text">Раян действительно хочет жениться на Регине?</div><button class="main-btn" id="yes">ДА 💗</button><button class="danger" id="no">НЕТ 😐</button><div class="small">Ответ следует выбирать очень осторожно 🗿</div></div></section>
+
+<section class="screen" id="s9"><div class="card"><div class="big">💍</div><div class="title">СИСТЕМА ГОТОВА</div><div class="text">Все проверки пройдены.</div><div class="names">Раян 🐥 + Регина 💗</div><div class="text">Осталось только нажать кнопку.</div><button class="main-btn" id="register">ЗАРЕГИСТРИРОВАТЬ БРАК 💍</button></div></section>
+
+<section class="screen" id="s10"><div class="card"><div class="big">🎉💍🎉</div><div class="title">ПОЗДРАВЛЯЕМ!</div><div class="names">РАЯН + РЕГИНА</div><div class="stamp">БРАК ОФИЦИАЛЬНО ОФОРМЛЕН</div><div class="text">🐥 + 💗 = 💍</div><div class="text">Система довольна результатом 😌</div><div class="small">*Это шуточная виртуальная церемония 😂</div></div></section>
+
+<div id="errorModal"><div class="error-card"><div class="title">⚠️ ОШИБКА 😔</div><div class="text">Система не смогла принять данный ответ.<br><br>Пожалуйста, попробуйте выбрать другой вариант.</div><button class="main-btn" id="close">ПОНЯТНО 🗿</button></div></div>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+const show=n=>{document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById("s"+n).classList.add("active");if(n===4)compatibility();if(n===10)celebration()};
+document.getElementById("start").onclick=()=>show(2);
+document.querySelectorAll(".next").forEach(b=>b.onclick=()=>show(+b.dataset.to));
+document.getElementById("yes").onclick=()=>show(9);
+document.getElementById("register").onclick=()=>show(10);
+
+function compatibility(){
+let v=0,i=0,p=document.getElementById("progress"),t=document.getElementById("progressText");
+let m=["Сравниваем характеры...","Проверяем чувство юмора...","Анализируем уровень терпения...","Проверяем совместимость по мемам...","Результат почти готов...","Слишком высокая совместимость 👀"];
+let timer=setInterval(()=>{v+=2;p.style.width=v+"%";if(v%18===0&&i<m.length)t.textContent=m[i++];if(v>=100){clearInterval(timer);t.textContent="СОВМЕСТИМОСТЬ: 100% 💗";setTimeout(()=>show(5),1200)}},50)
+}
+let no=document.getElementById("no"),attempts=0;
+let labels=["НЕТ? 🤨","Ты уверен? 👀","Попробуй ещё раз 🗿","Не туда 😂","Система сомневается 😌","ТОЧНО НЕТ? 😭"];
+no.onclick=()=>{
+attempts++;
+if(attempts>=5){document.getElementById("errorModal").style.display="flex";attempts=0;setTimeout(move,300);return}move()
+};
+function move(){no.style.position="fixed";let x=Math.max(10,Math.random()*(innerWidth-no.offsetWidth-20));let y=80+Math.random()*Math.max(1,innerHeight-no.offsetHeight-100);no.style.left=x+"px";no.style.top=y+"px";no.textContent=labels[Math.floor(Math.random()*labels.length)]}
+document.getElementById("close").onclick=()=>document.getElementById("errorModal").style.display="none";
+function celebration(){let a=["💗","❤️","💕","💖","💍","🐥","✨","🎉"];for(let i=0;i<120;i++){let h=document.createElement("div");h.className="heart";h.textContent=a[Math.floor(Math.random()*a.length)];h.style.left=Math.random()*100+"vw";h.style.top="-40px";h.style.fontSize=15+Math.random()*25+"px";h.style.animationDuration=2+Math.random()*4+"s";h.style.animationDelay=Math.random()*2+"s";document.body.appendChild(h);setTimeout(()=>h.remove(),7000)}}
+});
+</script>
+</body>
+</html>
